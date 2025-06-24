@@ -1,0 +1,117 @@
+That are just notes for me you can ignore it
+
+
+name: /inventory
+description: View your purchased items
+
+name: /purchase_history
+description: View purchase history for the server or a specific user (Admin only)
+
+name: /manage_stock_help
+description: Get detailed help for managing shop item stock
+
+name: /add_content_item
+description: Add a shop item with custom content reward
+
+name: /add_multi_content
+description: Add multiple content items to the shop (like codes or keys)
+
+name: /manage_shop_stock
+description: Manage stock for shop items (Admin only)
+
+name: /my_quests
+description: View your in-progress quests
+
+name: /test_shop_items
+description: Test retrieving shop items
+
+name: /debug_shop
+description: Debug the shop system
+
+name: /set_quest_requirement
+description: Set the number of quests required before accepting bounties
+
+name: /backup_database
+description: Create a backup of the database
+
+name: /restore_database
+description: Restore the database from a backup
+
+name: /update_shop_structure
+description: Update the shop database structure to support special items
+
+name: /submit_quest
+description: Submit proof of completion for a quest
+
+name: /profile
+description: View your profile with XP, level, and balance
+
+name: /quests
+description: View available quests
+
+name: /bounties
+description: View available bounties
+
+name: /my_bounties
+description: View bounties you
+
+name: /leaderboard
+description: View server leaderboards
+
+name: /create_bounty
+description: Create a new bounty (Bounty Makers only)
+
+name: /create_quest
+description: Create a new quest (Admin only)
+
+name: /set_bounty_maker
+description: Give or remove bounty maker status (Admin only)
+
+name: /set_level_role
+description: Set a role reward for reaching a level (Admin only)
+
+name: /set_prefix
+description: Change the bot
+
+name: /give_money
+description: Give money to a user (Admin only)
+
+name: /give_xp
+description: Give XP to a user (Admin only)
+
+name: /setup_shop_entry
+description: Post the shop entry point in a specific channel (admin only)
+
+name: /shop
+description: View the server shop
+
+name: /add_shop_item
+description: Add a new item to the server shop (Admin only)
+
+name: /buy
+description: Buy an item from the shop
+
+name: /daily
+description: Claim your daily €
+
+name: /set_daily_amount
+description: Set the daily reward amount (Admin only)
+
+name: /transfer
+description: Transfer € to another user
+
+name: /setup_leaderboard
+description: Set up an auto-updating leaderboard
+
+name: /setup_bounty_announcements
+description: Set up automatic bounty announcements (Admin only)
+
+name: /reset_user
+description: Reset a user
+
+name: /setup_bot
+description: Quick setup wizard for the bot (Admin only)
+
+name: /help
+description: View bot commands and information
+
