@@ -28,19 +28,16 @@ import {
   Shield, 
   Target, 
   TrendingUp, 
-  Users, 
   Award,
   BookOpen,
   Zap,
   Globe,
   Code,
-  Database,
-  Lock
 } from 'lucide-react';
 
 const CerebroPage: React.FC = () => {
   const [selectedPath, setSelectedPath] = useState<'architect' | 'developer' | 'devsecops'>('architect');
-  const [selectedNode, setSelectedNode] = useState<SkillNode | null>(null);
+  const [_selectedNode, setSelectedNode] = useState<SkillNode | null>(null);
 
   const skillTrees = {
     architect: aiSkillTreeData,
@@ -297,7 +294,7 @@ const CerebroPage: React.FC = () => {
               transition={{ delay: 0.3 }}
               className="grid gap-4 md:grid-cols-3"
             >
-              {achievements.map((achievement, index) => (
+              {achievements.map((achievement, _index) => (
                 <Card
                   key={achievement.title}
                   className={`transition-all duration-300 ${

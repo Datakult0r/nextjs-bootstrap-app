@@ -16,7 +16,7 @@ export function Footer() {
 
           <div className="max-w-[600px] space-y-2">
             <h4 className="text-2xl tracking-tighter">
-              {"Let's"} get in touch and {"we'll"} show you how {"we've"} helped
+              Let&apos;s get in touch and we&apos;ll show you how we&apos;ve helped
               others with similar problems
             </h4>
             <p className="leading-6 text-muted-foreground">

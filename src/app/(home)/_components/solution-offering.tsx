@@ -11,7 +11,7 @@ interface SolutionOfferingSectionProps {
 }
 
 export function SolutionOffering(props: SolutionOfferingSectionProps) {
-  const [hoveredCard, setHoveredCard] = useState<any>(null);
+  const [hoveredCard, setHoveredCard] = useState<string | null>(null);
 
   return (
     <section className="bg-secondary py-[80px] md:py-[108px]">

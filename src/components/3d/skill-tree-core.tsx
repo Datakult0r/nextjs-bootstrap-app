@@ -236,7 +236,7 @@ const NodeDetailsPanel: React.FC<{
 
           {/* Skills */}
           <div className="space-y-2">
-            <h4 className="text-sm font-medium">Skills You'll Learn:</h4>
+            <h4 className="text-sm font-medium">Skills You&apos;ll Learn:</h4>
             <div className="flex flex-wrap gap-1">
               {node.skills.map((skill) => (
                 <Badge key={skill} variant="secondary" className="text-xs">
@@ -323,9 +323,9 @@ const SkillTreeScene: React.FC<{
 // Main skill tree component
 const SkillTreeCore: React.FC<SkillTreeProps> = ({
   nodes,
-  width = 10,
-  height = 10,
-  levelHeight = 2,
+  width: _width = 10,
+  height: _height = 10,
+  levelHeight: _levelHeight = 2,
   onNodeClick,
   onNodeHover,
   className = ""

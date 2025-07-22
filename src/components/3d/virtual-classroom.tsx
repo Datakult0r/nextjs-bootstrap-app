@@ -2,11 +2,10 @@
 
 import React, { useRef, useState, useEffect, Suspense } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
-import { OrbitControls, Text, Box, Sphere, Plane, Html, Environment } from '@react-three/drei';
+import { OrbitControls, Html, Environment } from '@react-three/drei';
 import { motion } from 'framer-motion';
 import * as THREE from 'three';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
+import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
 import { 
@@ -19,6 +18,13 @@ import {
   Maximize,
   Settings
 } from 'lucide-react';
+
+interface Lesson {
+  title: string;
+  description: string;
+  duration: string;
+  instructor: string;
+}
 
 // Floating holographic screen component
 const HolographicScreen: React.FC<{
@@ -214,9 +220,9 @@ const AIAvatar: React.FC<{
 
 // Main 3D scene
 const VirtualClassroomScene: React.FC<{
-  lesson: any;
+  lesson?: Lesson;
   isPlaying: boolean;
-}> = ({ lesson, isPlaying }) => {
+}> = ({ lesson: _lesson, isPlaying }) => {
   const { camera } = useThree();
 
   useEffect(() => {
@@ -374,12 +380,19 @@ const ClassroomLoading: React.FC = () => (
 
 // Main virtual classroom component
 export const VirtualClassroom: React.FC<{
-  lesson?: any;
+  lesson?: Lesson;
   className?: string;
 }> = ({ lesson, className = "" }) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [progress, setProgress] = useState(0);
   const [participants] = useState(Math.floor(Math.random() * 50) + 10);
+
+  const defaultLesson: Lesson = {
+    title: "Introduction to AI",
+    description: "Learn the basics of artificial intelligence",
+    duration: "45 minutes",
+    instructor: "AI Assistant"
+  };
 
   useEffect(() => {
     if (isPlaying) {
@@ -399,7 +412,7 @@ export const VirtualClassroom: React.FC<{
       <div className="h-96 w-full rounded-lg border border-cyan-500/30 bg-gradient-to-br from-slate-900 via-purple-900/20 to-slate-900 overflow-hidden">
         <Suspense fallback={<ClassroomLoading />}>
           <Canvas camera={{ position: [0, 5, 10], fov: 60 }}>
-            <VirtualClassroomScene lesson={lesson} isPlaying={isPlaying} />
+            <VirtualClassroomScene lesson={lesson || defaultLesson} isPlaying={isPlaying} />
           </Canvas>
         </Suspense>
         

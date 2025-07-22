@@ -22,7 +22,7 @@ export default function RelatedVideos({ videoId }: RelatedVideosProps) {
       const currentVideo = videos.find(v => v.id === videoId)
 
       // Filter out the current video and sort by potential relevance
-      let filtered = videos.filter(v => v.id !== videoId)
+      const filtered = videos.filter(v => v.id !== videoId)
 
       // If current video has a category, prioritize videos from same category
       if (currentVideo?.category_id) {

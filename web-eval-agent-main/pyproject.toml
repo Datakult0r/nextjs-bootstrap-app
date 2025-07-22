@@ -1,0 +1,30 @@
+[project]
+name = "web-eval-agent"
+version = "0.1.1"
+description = "Operative AI - WebAgentEval Agent"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "browser-use==0.1.40",
+    "google-genai>=1.7.0",
+    "google-generativeai>=0.8.4",
+    "langchain>=0.3.21",
+    "langchain-anthropic>=0.3.3",
+    "langchain-google-genai>=2.0.10",
+    "mcp>=1.6.0",
+    "python-dotenv>=1.1.0",
+    "playwright>=1.41.0",
+    "flask>=3.1.0",
+    "flask-socketio>=5.5.1",
+    "ruff>=0.11.9",
+]
+
+[project.scripts]
+webEvalAgent = "webEvalAgent.mcp_server:main"       
+
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.package-data]
+webEvalAgent = ["templates/**", "src/agent_overlay.js", "src/**"]

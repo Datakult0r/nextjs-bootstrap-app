@@ -52,7 +52,7 @@ export default function RetailServices() {
           description:
             "Our solution is designed to help you transform your business and achieve remarkable results.",
           image: "/image/thumbnail/old-man-looking-at-git-smilling.png",
-          steps,
+          _steps,
         }}
       />
       <PricingSection content={retailPricingPlans} />
@@ -61,7 +61,7 @@ export default function RetailServices() {
   );
 }
 
-const steps = [
+const _steps = [
   {
     title: "Collect the information throw your needs",
     description:

@@ -11,10 +11,7 @@ import {
   Zap, 
   Target, 
   Users, 
-  TrendingUp, 
-  Shield,
   Cpu,
-  Database
 } from "lucide-react";
 
 interface Solution {

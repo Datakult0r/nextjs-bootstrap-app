@@ -4,11 +4,11 @@ import config from "@/app/config";
 export default {
   hero: {
     heading:
-      "To harness the full potential of AI & GenAI you need a partner who can put it to work.",
+      "The AI Pioneers Playground - Where Innovation Meets Implementation",
     paragraph:
-      "Whether is enabling new business capabilities or technological landscape efficiencies, our full-stack AI & GenAI offering covers the entirety of an enterprise value chain, putting AI to work where you need it here and now.",
+      "Discover cutting-edge AI solutions tailored for forward-thinking businesses. From intelligent automation to industry-specific AI applications, we transform your vision into reality with proven generative AI technologies.",
     cta: {
-      label: "Book a call",
+      label: "Explore AI Solutions",
       formId: config.bookings.discoveryCall.id,
       formUrl: config.bookings.discoveryCall.url,
     },
@@ -17,15 +17,70 @@ export default {
   videoIntro: {
     videosrc: "https://www.youtube.com/embed/-YQ6NNfP3hg?si=V3NVguCXXpjijoPm",
     thumbnailSrc: "https://storage.googleapis.com/msgsndr/SRTw3xlSbwAV7iycIh1t/media/678e9f99565e9a2d16ffe56a.webp",
-    thumbnailAlt: "Hero Video",
+    thumbnailAlt: "AI Innovation Showcase",
+  },
+
+  aiPioneersSection: {
+    title: "For AI Pioneers",
+    heading: "Leading the Future of Intelligent Business",
+    paragraph: "Join the ranks of innovative companies leveraging AI to revolutionize their industries. Our comprehensive AI ecosystem empowers you to stay ahead of the curve.",
+    features: [
+      {
+        title: "AI Agency Solutions",
+        description: "Custom AI agents and automation systems designed for your specific industry needs",
+        icon: "🤖"
+      },
+      {
+        title: "Generative AI Products",
+        description: "State-of-the-art generative AI applications for content, analysis, and decision-making",
+        icon: "✨"
+      },
+      {
+        title: "AI Education Platform",
+        description: "Immersive learning experiences in virtual worlds with gamified AI skill development",
+        icon: "🎓"
+      }
+    ]
+  },
+
+  industryFocus: {
+    title: "Industry Solutions",
+    heading: "AI Solutions Tailored to Your Industry",
+    paragraph: "Discover how our AI expertise transforms businesses across various sectors with industry-specific applications.",
+    industries: [
+      {
+        name: "Healthcare",
+        description: "AI-powered diagnostics, patient management, and medical research acceleration",
+        gradient: "healthcare-gradient",
+        icon: "🏥"
+      },
+      {
+        name: "Finance",
+        description: "Intelligent trading systems, risk assessment, and automated compliance solutions",
+        gradient: "finance-gradient", 
+        icon: "💰"
+      },
+      {
+        name: "Retail",
+        description: "Personalized shopping experiences, inventory optimization, and demand forecasting",
+        gradient: "retail-gradient",
+        icon: "🛍️"
+      },
+      {
+        name: "Manufacturing",
+        description: "Predictive maintenance, quality control, and supply chain optimization",
+        gradient: "manufacturing-gradient",
+        icon: "🏭"
+      }
+    ]
   },
 
   ourPartners: {
-    title: "Our Partners",
+    title: "Technology Partners",
     heading:
-      "Innovative companies that help us bring you the best AI has to offer.",
+      "Powered by Industry-Leading AI Technologies",
     paragraph:
-      "We build our solutions using cutting-edge products and services from these industry-leading technology partners",
+      "We leverage cutting-edge tools and platforms from the world's most innovative AI companies to deliver exceptional results.",
     partners: [
       "/image/brand-logos/amazon-redshif.svg",
       "/image/brand-logos/amazon-web-service.svg",

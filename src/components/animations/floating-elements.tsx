@@ -2,8 +2,6 @@
 
 import React, { useRef, useEffect } from 'react';
 import { motion, useAnimation, useInView } from 'framer-motion';
-import { Canvas, useFrame } from '@react-three/fiber';
-import * as THREE from 'three';
 
 // Floating particles component
 export const FloatingParticles: React.FC<{

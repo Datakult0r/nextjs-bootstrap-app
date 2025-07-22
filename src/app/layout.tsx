@@ -1,18 +1,19 @@
-import NextTopLoader from "nextjs-toploader";
-import "@/styles/globals.css";
-
-import { Analytics } from "@vercel/analytics/react";
-import { GHLChatBot } from "@/components/common/widgets/ghl-chatbot";
-
-import { Footer } from "@/components/common/footer";
-import { Header } from "@/components/common/Header";
-
-import { AppProvider } from "@/providers/AppProvider";
-
+import type { Metadata } from "next";
 import { plusJakartaSansFont, jetBrainsMonoFont } from "./font";
-export { meta as metadata } from "./metadata";
-import config from "./config";
+import "../styles/globals.css";
+// import { GHLChatBot as _GHLChatBot } from "@/components/common/widgets/ghl-chatbot";
+import { AppProvider } from "@/providers/AppProvider";
+// import { Footer as _Footer } from "@/components/common/footer";
+// import { Header as _Header } from "@/components/common/Header";
+import { Toaster } from "@/components/ui/toaster";
+import { Analytics } from "@vercel/analytics/react";
+// import config from "./config";
 import LayoutContent from "./LayoutContent";
+
+export const metadata: Metadata = {
+  title: "Clinic of AI",
+  description: "AI-powered solutions for modern businesses",
+};
 
 type RootLayoutProps = Readonly<{
   children: React.ReactNode;
@@ -23,23 +24,11 @@ export default function RootLayout({ children }: RootLayoutProps) {
     <html lang="en" suppressHydrationWarning>
       <Analytics />
       <body
-        className={`${plusJakartaSansFont.variable} ${jetBrainsMonoFont.variable}`}
+        className={`${plusJakartaSansFont.variable} ${jetBrainsMonoFont.variable} font-sans antialiased`}
       >
-        <NextTopLoader
-          color="#00FFFF"
-          initialPosition={0.08}
-          crawlSpeed={200}
-          height={3}
-          crawl={true}
-          showSpinner={false}
-          easing="ease"
-          speed={200}
-          zIndex={1600}
-          showAtBottom={false}
-        />
-
         <AppProvider>
           <LayoutContent>{children}</LayoutContent>
+          <Toaster />
         </AppProvider>
       </body>
     </html>

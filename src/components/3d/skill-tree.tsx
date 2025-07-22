@@ -1,17 +1,16 @@
-m"use client";
+"use client";
 
 import React, { useRef, useState, useEffect, useMemo, Suspense } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
-import { OrbitControls, Text, Sphere, Line, Html } from '@react-three/drei';
+import { OrbitControls, Text, Line, Html } from '@react-three/drei';
 import { motion } from 'framer-motion';
 import * as THREE from 'three';
-import { SkillNode, SkillTreeProps, SkillTreeState } from '@/types/skill-tree';
+import { SkillNode, SkillTreeProps } from '@/types/skill-tree';
 import { 
   calculateNodePositions, 
   createConnectionLines, 
   getNodeColor, 
-  createGlowMaterial,
-  easeInOutCubic 
+  createGlowMaterial
 } from '@/libs/three-utils.client';
 import { Badge } from '@/components/ui/badge';
 import { Progress } from '@/components/ui/progress';
@@ -225,7 +224,7 @@ const NodeDetailsPanel: React.FC<{
 
           {/* Skills */}
           <div className="space-y-2">
-            <h4 className="text-sm font-medium">Skills You'll Learn:</h4>
+            <h4 className="text-sm font-medium">Skills You&apos;ll Learn:</h4>
             <div className="flex flex-wrap gap-1">
               {node.skills.map((skill) => (
                 <Badge key={skill} variant="secondary" className="text-xs">
@@ -322,9 +321,9 @@ const SkillTreeLoading: React.FC = () => (
 // Main skill tree component
 export const SkillTree: React.FC<SkillTreeProps> = ({
   nodes,
-  width = 10,
-  height = 10,
-  levelHeight = 2,
+  width: _width = 10,
+  height: _height = 10,
+  levelHeight: _levelHeight = 2,
   onNodeClick,
   onNodeHover,
   className = ""

@@ -10,7 +10,7 @@ export default function ComingSoonPage() {
         </div>
         <h2 className="text-4xl tracking-tighter">Coming Soon</h2>
         <p className="text-muted-foreground">
-          {"We're"} working hard to bring you something amazing. Stay tuned!
+          We&apos;re working hard to bring you something amazing. Stay tuned!
         </p>
       </div>
     </div>

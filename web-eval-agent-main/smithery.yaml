@@ -1,0 +1,26 @@
+# Smithery configuration file: https://smithery.ai/docs/config#smitheryyaml
+
+startCommand:
+  type: stdio
+  configSchema:
+    # JSON Schema defining the configuration options for the MCP.
+    type: object
+    required:
+      - operativeApiKey
+    properties:
+      operativeApiKey:
+        type: string
+        description: OperativeAI API key for validating access to the service.
+  commandFunction:
+    # A JS function that produces the CLI command based on the given config to start the MCP on stdio.
+    |-
+    (config) => ({
+      command: 'python',
+      args: ['mcp_server.py'],
+      env: {
+        OPERATIVE_API_KEY: config.operativeApiKey,
+        // You can add more environment variables here if necessary
+      }
+    })
+  exampleConfig:
+    operativeApiKey: test_api_key_123

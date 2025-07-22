@@ -82,7 +82,7 @@ export function FeatureSection(props: FeatureSectionProps) {
               className={`space-y-20 px-8 py-8 ${index === props.items.length - 2 ? "md:col-span-2" : ""}`}
             >
               <motion.div
-                className={`inline-block rounded-full bg-teal-subtle px-4 py-2 font-mono text-sm font-medium uppercase text-teal-subtle-foreground`}
+                className="inline-block rounded-full bg-teal-subtle px-4 py-2 font-mono text-sm font-medium uppercase text-teal-subtle-foreground"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >

@@ -1,9 +1,11 @@
 import { NextResponse } from 'next/server';
 import { getAllVideos, getVideos } from '@/libs/api';
 
-// This export prevents the route from being statically optimized
-// and allows it to use dynamic features like request.url
-export const dynamic = 'force-dynamic';
+interface VideoFilters {
+  category_id?: string;
+  isdeleted?: boolean;
+  visible?: boolean;
+}
 
 // GET /api/videos
 export async function GET(request: Request) {
@@ -24,7 +26,7 @@ export async function GET(request: Request) {
                     visibleParam === 'false' ? false : undefined;
     
     // Build filter object based on available parameters
-    const filters: any = {};
+    const filters: VideoFilters = {};
     
     if (categoryId) {
       filters.category_id = categoryId;

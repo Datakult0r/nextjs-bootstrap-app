@@ -1,5 +1,18 @@
 import { NextRequest } from 'next/server';
 
+interface Article {
+  title: string;
+  description?: string;
+  url: string;
+  image?: string;
+  publishedAt: string;
+  source: {
+    name: string;
+    url: string;
+  };
+  summary?: string | null;
+}
+
 const GNEWS_API_KEY = process.env.GNEWS_API_KEY;
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
 
@@ -10,7 +23,7 @@ const GNEWS_QUERY = encodeURIComponent(
 const GNEWS_URL = `https://gnews.io/api/v4/search?q=${GNEWS_QUERY}&lang=en&country=us&max=5&apikey=${GNEWS_API_KEY}`;
 
 // Simple in-memory cache
-let cachedNews: { timestamp: number; articles: any[] } | null = null;
+let cachedNews: { timestamp: number; articles: Article[] } | null = null;
 const CACHE_DURATION = 5 * 60 * 1000; // 5 minutes
 
 async function summarizeWithOpenAI(text: string) {
@@ -52,7 +65,7 @@ async function summarizeWithOpenAI(text: string) {
   }
 }
 
-export async function GET(req: NextRequest) {
+export async function GET(_req: NextRequest) {
   try {
     if (!GNEWS_API_KEY) {
       return new Response(JSON.stringify({ error: 'GNews API key is not configured.' }), { status: 500 });
@@ -78,7 +91,7 @@ export async function GET(req: NextRequest) {
 
     // Summarize each article with better error handling
     const summarizedArticles = await Promise.all(
-      articles.map(async (article: any) => {
+      articles.map(async (article: Article) => {
         const summary = await summarizeWithOpenAI(
           `${article.title}\n${article.description || ''}`
         );

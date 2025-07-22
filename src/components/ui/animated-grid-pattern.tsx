@@ -1,7 +1,6 @@
 "use client";
 
-import { useEffect, useId, useRef, useState, useCallback } from "react";
-import { motion } from "framer-motion";
+import { useEffect, useRef } from "react";
 import { cn } from "@/libs/utils";
 
 interface AnimatedGridPatternProps {
@@ -9,38 +8,14 @@ interface AnimatedGridPatternProps {
   height?: number;
   x?: number;
   y?: number;
-  strokeDasharray?: any;
+  strokeDasharray?: string;
   numSquares?: number;
   className?: string;
   maxOpacity?: number;
   duration?: number;
   repeatDelay?: number;
-}
-
-// Helper functions outside component:
-function getPos(
-  width: number,
-  height: number,
-  cellWidth: number,
-  cellHeight: number
-): [number, number] {  // <-- Explicit tuple return type here
-  return [
-    Math.floor((Math.random() * width) / cellWidth),
-    Math.floor((Math.random() * height) / cellHeight),
-  ];
-}
-
-function generateSquares(
-  count: number,
-  width: number,
-  height: number,
-  cellWidth: number,
-  cellHeight: number
-) {
-  return Array.from({ length: count }, (_, i) => ({
-    id: i,
-    pos: getPos(width, height, cellWidth, cellHeight),
-  }));
+  waveEffect?: boolean;
+  neuralNetwork?: boolean;
 }
 
 export function AnimatedGridPattern({
@@ -48,92 +23,31 @@ export function AnimatedGridPattern({
   height = 40,
   x = -1,
   y = -1,
-  strokeDasharray = 0,
+  strokeDasharray = "0",
   numSquares = 50,
   className,
   maxOpacity = 0.5,
   duration = 4,
   repeatDelay = 0.5,
+  waveEffect = true,
+  neuralNetwork = false,
   ...props
 }: AnimatedGridPatternProps) {
-  const id = useId();
-  const containerRef = useRef<SVGSVGElement | null>(null);
-
-  const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
-  const [squares, setSquares] = useState<
-    { id: number; pos: [number, number] }[]
-  >([]);
-
-  // Corrected: wrap in useCallback to ensure it's stable and references the latest dimensions
-  const updateSquarePosition = useCallback(
-    (id: number) => {
-      setSquares((currentSquares) =>
-        currentSquares.map((sq) =>
-          sq.id === id
-            ? {
-              ...sq,
-              pos: getPos(
-                dimensions.width,
-                dimensions.height,
-                width,
-                height
-              ),
-            }
-            : sq
-        )
-      );
-    },
-    [dimensions.width, dimensions.height, width, height]
-  );
-
-  // Effect to regenerate squares whenever dimensions or relevant props change
-  useEffect(() => {
-    if (dimensions.width && dimensions.height) {
-      setSquares(
-        generateSquares(
-          numSquares,
-          dimensions.width,
-          dimensions.height,
-          width,
-          height
-        )
-      );
-    }
-  }, [dimensions.width, dimensions.height, numSquares, width, height]);
-
-  // Resize observer to update container dimensions
-  useEffect(() => {
-    const resizeObserver = new ResizeObserver((entries) => {
-      for (let entry of entries) {
-        setDimensions({
-          width: entry.contentRect.width,
-          height: entry.contentRect.height,
-        });
-      }
-    });
-
-    const currentRef = containerRef.current;
-
-    if (currentRef) resizeObserver.observe(currentRef);
-
-    return () => {
-      if (currentRef) resizeObserver.unobserve(currentRef);
-    };
-  }, []);
+  const id = useRef(`grid-pattern-${Math.random().toString(36).substr(2, 9)}`);
 
   return (
     <svg
-      ref={containerRef}
       aria-hidden="true"
       className={cn(
         "pointer-events-none absolute inset-0 h-full w-full fill-gray-400/30 stroke-gray-400/30",
-        className
+        waveEffect && "animate-grid-wave",
+        className,
       )}
       {...props}
     >
       <defs>
         <pattern
-          id={id}
+          id={id.current}
           width={width}
           height={height}
           patternUnits="userSpaceOnUse"
@@ -144,32 +58,113 @@ export function AnimatedGridPattern({
             d={`M.5 ${height}V.5H${width}`}
             fill="none"
             strokeDasharray={strokeDasharray}
+            className={cn(
+              "stroke-current",
+              neuralNetwork && "stroke-primary/40"
+            )}
           />
+          {neuralNetwork && (
+            <>
+              {/* Neural connection nodes */}
+              <circle
+                cx={width / 4}
+                cy={height / 4}
+                r="1"
+                className="fill-primary/60 animate-neural-pulse"
+              />
+              <circle
+                cx={(3 * width) / 4}
+                cy={(3 * height) / 4}
+                r="1"
+                className="fill-accent/60 animate-neural-pulse"
+                style={{ animationDelay: "1s" }}
+              />
+              {/* Connection lines */}
+              <path
+                d={`M${width / 4} ${height / 4} L${(3 * width) / 4} ${(3 * height) / 4}`}
+                className="stroke-primary/20 animate-circuit-flow"
+                strokeWidth="0.5"
+                strokeDasharray="2 2"
+              />
+            </>
+          )}
         </pattern>
+        
+        {/* Gradient overlay for wave effect */}
+        <linearGradient id={`${id.current}-gradient`} x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="hsl(var(--primary))" stopOpacity="0.1" />
+          <stop offset="50%" stopColor="hsl(var(--accent))" stopOpacity="0.05" />
+          <stop offset="100%" stopColor="hsl(var(--primary))" stopOpacity="0.1" />
+        </linearGradient>
       </defs>
-      <rect width="100%" height="100%" fill={`url(#${id})`} />
-      <svg x={x} y={y} className="overflow-visible">
-        {squares.map(({ pos: [x, y], id }, index) => (
-          <motion.rect
-            initial={{ opacity: 0 }}
-            animate={{ opacity: maxOpacity }}
-            transition={{
-              duration,
-              repeat: 1,
-              delay: index * 0.1,
-              repeatType: "reverse",
-            }}
-            onAnimationComplete={() => updateSquarePosition(id)}
-            key={`${x}-${y}-${id}-${index}`}
-            width={width - 1}
-            height={height - 1}
-            x={x * width + 1}
-            y={y * height + 1}
-            fill="currentColor"
-            strokeWidth="0"
+      
+      <rect width="100%" height="100%" fill={`url(#${id.current})`} />
+      
+      {/* Animated squares for dynamic effect */}
+      {Array.from({ length: numSquares }, (_, i) => (
+        <rect
+          key={i}
+          width={width}
+          height={height}
+          x={Math.random() * 100 + "%"}
+          y={Math.random() * 100 + "%"}
+          fill={`url(#${id.current}-gradient)`}
+          className={cn(
+            "animate-hologram",
+            waveEffect && "animate-floating-orb"
+          )}
+          style={{
+            animationDelay: `${Math.random() * duration}s`,
+            animationDuration: `${duration + Math.random() * 2}s`,
+          }}
+        />
+      ))}
+      
+      {/* Wave overlay effect */}
+      {waveEffect && (
+        <g className="animate-grid-wave">
+          <path
+            d="M0,50 Q25,30 50,50 T100,50 V100 H0 Z"
+            fill={`url(#${id.current}-gradient)`}
+            opacity="0.1"
+            className="animate-data-flow"
           />
-        ))}
-      </svg>
+          <path
+            d="M0,60 Q30,40 60,60 T120,60 V100 H0 Z"
+            fill="hsl(var(--accent) / 0.05)"
+            className="animate-data-flow"
+            style={{ animationDelay: "2s" }}
+          />
+        </g>
+      )}
+      
+      {/* Neural network connections overlay */}
+      {neuralNetwork && (
+        <g className="opacity-30">
+          {Array.from({ length: 10 }, (_, i) => (
+            <g key={i}>
+              <circle
+                cx={`${Math.random() * 100}%`}
+                cy={`${Math.random() * 100}%`}
+                r="2"
+                className="fill-primary animate-neural-pulse"
+                style={{
+                  animationDelay: `${Math.random() * 3}s`,
+                }}
+              />
+              <path
+                d={`M${Math.random() * 100}% ${Math.random() * 100}% L${Math.random() * 100}% ${Math.random() * 100}%`}
+                className="stroke-primary/20 animate-circuit-flow"
+                strokeWidth="1"
+                strokeDasharray="3 3"
+                style={{
+                  animationDelay: `${Math.random() * 2}s`,
+                }}
+              />
+            </g>
+          ))}
+        </g>
+      )}
     </svg>
   );
 }

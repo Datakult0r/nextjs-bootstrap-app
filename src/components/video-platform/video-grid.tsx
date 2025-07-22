@@ -324,6 +324,6 @@ function stringToColor(str: string): string {
   }
 
   // Generate HSL color with fixed saturation and lightness for better contrast
-  let h = Math.abs(hash) % 360;
+  const h = Math.abs(hash) % 360;
   return `hsl(${h}, 70%, 45%)`;
 }

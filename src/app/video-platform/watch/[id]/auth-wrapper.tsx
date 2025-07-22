@@ -8,7 +8,7 @@ interface AuthenticatedVideoWrapperProps {
 }
 
 export default function AuthenticatedVideoWrapper({ children }: AuthenticatedVideoWrapperProps) {
-  const { isAuthenticated, isLoading } = useRequireAuth()
+  const { isAuthenticated: _isAuthenticated, isLoading } = useRequireAuth()
   
   // Show loading state while checking authentication
   if (isLoading) {

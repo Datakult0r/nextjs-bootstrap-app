@@ -35,7 +35,7 @@ export function SolutionCard(props: SolutionCardProps) {
 
   return (
     <motion.div
-      className={`group flex flex-col gap-y-8 rounded-lg bg-background p-4 transition-all duration-300 ease-out lg:flex-row-reverse lg:justify-between`}
+      className="group flex flex-col gap-y-8 rounded-lg bg-background p-4 transition-all duration-300 ease-out lg:flex-row-reverse lg:justify-between"
       onMouseEnter={onMouseEnter}
       animate={{
         flex: isHovered ? 2 : 1,

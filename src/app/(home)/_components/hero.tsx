@@ -2,7 +2,6 @@ import { cn } from "@/libs/utils";
 import { BookingForm } from "@/components/common/booking-form";
 import { AnimatedGridPattern } from "@/components/ui/animated-grid-pattern";
 import { AnimatedArrowButton } from "@/components/ui/animated-arrow-button";
-import Link from "next/link";
 
 interface HeroProps {
   heading: string;

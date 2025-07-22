@@ -13,7 +13,7 @@ export default function ForgotPasswordPage() {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const { forgotPassword } = useAuth();
   const notification = useNotification();
-  const { theme } = useTheme();
+  const { theme: _theme } = useTheme();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -86,7 +86,7 @@ export default function ForgotPasswordPage() {
               <div className="text-center mb-6">
                 <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">Reset Password</h1>
                 <p className="text-gray-600 dark:text-gray-300">
-                  Enter your email address and we'll send you instructions to reset your password.
+                  Enter your email address and we&apos;ll send you instructions to reset your password.
                 </p>
               </div>
 
@@ -134,10 +134,10 @@ export default function ForgotPasswordPage() {
               </div>
               <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">Check Your Email</h2>
               <p className="text-gray-600 dark:text-gray-300 mb-6">
-                We've sent a password reset link to <strong>{email}</strong>. Please check your inbox and follow the instructions.
+                We&apos;ve sent a password reset link to <strong>{email}</strong>. Please check your inbox and follow the instructions.
               </p>
               <p className="text-sm text-gray-500 dark:text-gray-400">
-                Didn't receive the email? Check your spam folder or try again.
+                Didn&apos;t receive the email? Check your spam folder or try again.
               </p>
             </div>
           )}

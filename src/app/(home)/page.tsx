@@ -1,12 +1,11 @@
 import { HeroV2 } from "./_components/hero-v2";
+import { AiPioneersSection } from "./_components/ai-pioneers-section";
+import { IndustryFocusSection } from "./_components/industry-focus-section";
 import { OurPartners } from "./_components/our-partners";
 import { VideoIntroduction } from "./_components/video-introduction";
 import { AIProgressTracker } from "./_components/ai-progress-tracker";
 import { AISolutionsGamified } from "./_components/ai-solutions-gamified";
-import { AILearningPaths } from "./_components/ai-learning-paths";
 import { Quote } from "./_components/quote";
-import { Industries } from "./_components/industries";
-import { Insight } from "./_components/insight";
 import { GetStartedSection } from "./_components/get-started-section";
 
 import content from "./_data";
@@ -31,18 +30,17 @@ export default function Home() {
   return (
     <>
       <HeroV2 {...content.hero} />
+      <AiPioneersSection {...content.aiPioneersSection} />
       <VideoIntroduction {...content.videoIntro} />
+      <IndustryFocusSection {...content.industryFocus} />
       <OurPartners {...content.ourPartners} />
-      <AIProgressTracker />
       <AISolutionsGamified 
         title={content.solutionOffering.title}
         heading={content.solutionOffering.heading}
         solutions={gamifiedSolutions}
       />
-      <AILearningPaths />
+      <AIProgressTracker />
       <Quote {...content.quote} />
-      <Industries {...content.industries} />
-      <Insight {...content.insights} />
       <GetStartedSection {...content.mainCta} />
     </>
   );

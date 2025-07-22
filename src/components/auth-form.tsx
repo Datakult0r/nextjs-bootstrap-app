@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { Eye, EyeOff, ArrowRight } from "lucide-react";
 import { useTheme } from "@/providers/theme-provider";

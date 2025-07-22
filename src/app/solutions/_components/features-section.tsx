@@ -6,7 +6,7 @@ import Image from "next/image";
 import createGlobe from "cobe";
 import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
-import { BarChart2, Brain, Shield, Zap } from "lucide-react";
+import { Brain } from "lucide-react";
 import Link from "next/link";
 import { TitleBlock } from "@/components/common/title-block";
 

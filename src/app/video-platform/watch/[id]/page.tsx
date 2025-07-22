@@ -1,6 +1,5 @@
 import { Suspense } from "react"
 import PageLayout from "@/components/video-platform/page-layout"
-import VideoPlayer from "@/components/video-platform/video-player"
 import VideoInfo from "@/components/video-platform/video-info"
 import RelatedVideos from "@/components/video-platform/related-videos"
 import { Skeleton } from "@/components/ui/skeleton"
@@ -32,9 +31,16 @@ async function getVideoData(id: string) {
   }
 }
 
-export default async function WatchPage({ params }: { params: { id: string } }) {
+export default async function WatchPage({ 
+  params 
+}: { 
+  params: Promise<{ id: string }> 
+}) {
+  // Await params as required by Next.js App Router
+  const { id } = await params;
+  
   // Fetch the video data
-  const video = await getVideoData(params.id);
+  const video = await getVideoData(id);
 
   if (!video) {
     return (
@@ -45,7 +51,7 @@ export default async function WatchPage({ params }: { params: { id: string } }) 
           </div>
           <h2 className="text-xl font-semibold mb-2">Video Not Found</h2>
           <p className="text-muted-foreground max-w-md">
-            The video you're looking for doesn't exist or may have been removed.
+            The video you&apos;re looking for doesn&apos;t exist or may have been removed.
           </p>
         </div>
       </PageLayout>
@@ -79,7 +85,7 @@ export default async function WatchPage({ params }: { params: { id: string } }) 
               </div>
             </Suspense>
             <Suspense fallback={<VideoInfoSkeleton />}>
-              <VideoInfo videoId={params.id} video={video} />
+              <VideoInfo videoId={id} video={video} />
             </Suspense>
           </div>
           <div className="space-y-4">
@@ -87,7 +93,7 @@ export default async function WatchPage({ params }: { params: { id: string } }) 
               Related Videos <span className="text-muted-foreground">(6)</span>
             </h2>
             <Suspense fallback={<RelatedVideosSkeleton />}>
-              <RelatedVideos videoId={params.id} />
+              <RelatedVideos videoId={id} />
             </Suspense>
           </div>
         </div>

@@ -4,7 +4,7 @@
 
 @layer base {
   :root {
-    /* Base colors */
+    /* Professional AI Theme - Sophisticated & Modern */
     --background: 0 0% 100%;
     --foreground: 222.2 84% 4.9%;
 
@@ -14,136 +14,82 @@
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
 
-    /* Primary and Secondary */
-    --primary: 188 93% 49%;
-    --primary-foreground: 217.2 32.6% 17.5%;
-    --secondary: 240 5.9% 90%;
-    /* stone-200 */
-    --secondary-foreground: 24 9.8% 10%;
-    /* stone-900 */
+    /* Primary - Deep Purple (Professional AI) */
+    --primary: 262.1 83.3% 57.8%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 222.2 84% 4.9%;
 
-    /* Muted and Accent */
-    --muted: 210 40% 96.1%;
+    /* Muted and Accent - Sophisticated Blues */
+    --muted: 210 40% 96%;
     --muted-foreground: 215.4 16.3% 46.9%;
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 210 40% 96%;
+    --accent-foreground: 222.2 84% 4.9%;
 
     /* Utility colors */
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
-    --ring: 221.2 83.2% 53.3%;
+    --ring: 262.1 83.3% 57.8%;
     --radius: 0.5rem;
 
-    /* Chart colors */
-    --chart-1: 12 76% 61%;
+    /* Chart colors - Professional palette */
+    --chart-1: 262.1 83.3% 57.8%;
     --chart-2: 173 58% 39%;
     --chart-3: 197 37% 24%;
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
 
-    /* Decorative colors */
-    --coral: 16 100% 66%;
-    --coral-foreground: 0 0% 100%;
-    --coral-subtle: 16 100% 95%;
-    --coral-subtle-foreground: 16 100% 66%;
+    /* Custom Professional AI colors */
+    --ai-primary: 262.1 83.3% 57.8%;
+    --ai-secondary: 173 58% 39%;
+    --ai-accent: 197 37% 24%;
+    --tech-blue: 214 95% 93%;
+    --innovation-purple: 262.1 83.3% 57.8%;
+    --pioneer-gradient: linear-gradient(135deg, hsl(262.1 83.3% 57.8%) 0%, hsl(173 58% 39%) 100%);
+    
+    /* Subtle tech aesthetics */
+    --grid-color: 214.3 31.8% 91.4%;
+    --glow-subtle: 262.1 83.3% 57.8% / 0.1;
+    --surface-elevated: 0 0% 98%;
 
-    --teal: 181 100% 25%;
-    --teal-foreground: 0 0% 100%;
-    --teal-subtle: 181 100% 95%;
-    --teal-subtle-foreground: 181 100% 26%;
-
-    --navy: 211 97% 12%;
-    --navy-foreground: 0 0% 100%;
-    --navy-subtle: 211 97% 95%;
-    --navy-subtle-foreground: 211 97% 12%;
-
-    --mustard: 44 100% 55%;
-    --mustard-foreground: 0 0% 0%;
-    --mustard-subtle: 44 100% 95%;
-    --mustard-subtle-foreground: 44 100% 55%;
-
-    /* Sidebar colors (from 2nd CSS, not existing in 1st CSS) */
+    /* Sidebar colors */
     --sidebar-background: 0 0% 98%;
-    --sidebar-foreground: 240 5.3% 26.1%;
-    --sidebar-primary: 240 5.9% 10%;
-    --sidebar-primary-foreground: 0 0% 98%;
-    --sidebar-accent: 240 4.8% 95.9%;
-    --sidebar-accent-foreground: 240 5.9% 10%;
-    --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-foreground: 222.2 84% 4.9%;
+    --sidebar-primary: 262.1 83.3% 57.8%;
+    --sidebar-primary-foreground: 210 40% 98%;
+    --sidebar-accent: 210 40% 96%;
+    --sidebar-accent-foreground: 222.2 84% 4.9%;
+    --sidebar-border: 214.3 31.8% 91.4%;
+    --sidebar-ring: 262.1 83.3% 57.8%;
   }
 
   .dark {
-    /* Base colors */
     --background: 222.2 84% 4.9%;
     --foreground: 210 40% 98%;
-
-    /* Card and Popover */
     --card: 222.2 84% 4.9%;
     --card-foreground: 210 40% 98%;
     --popover: 222.2 84% 4.9%;
     --popover-foreground: 210 40% 98%;
-
-    /* Primary and Secondary */
-    --primary: 187.9 85.7% 53.3%;
-    --primary-foreground: 217.2 32.6% 17.5%;
+    --primary: 262.1 83.3% 57.8%;
+    --primary-foreground: 210 40% 98%;
     --secondary: 217.2 32.6% 17.5%;
-    /* slate-800 */
-    --secondary-foreground: 60 9.1% 97.8%;
-    /* stone-50 */
-
-    /* Muted and Accent */
+    --secondary-foreground: 210 40% 98%;
     --muted: 217.2 32.6% 17.5%;
     --muted-foreground: 215 20.2% 65.1%;
     --accent: 217.2 32.6% 17.5%;
     --accent-foreground: 210 40% 98%;
-
-    /* Utility colors */
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
-    --ring: 224.3 76.3% 48%;
-
-    /* Chart colors */
-    --chart-1: 220 70% 50%;
-    --chart-2: 160 60% 45%;
-    --chart-3: 30 80% 55%;
-    --chart-4: 280 65% 60%;
-    --chart-5: 340 75% 55%;
-
-    /* Decorative colors */
-    --coral: 16 100% 66%;
-    --coral-foreground: 0 0% 100%;
-    --coral-subtle: 16 100% 15%;
-    --coral-subtle-foreground: 16 100% 66%;
-
-    --teal: 181 100% 35%;
-    --teal-foreground: 0 0% 100%;
-    --teal-subtle: 181 100% 15%;
-    --teal-subtle-foreground: 181 100% 35%;
-
-    --navy: 211 100% 11.8%;
-    --navy-foreground: 0 0% 100%;
-    --navy-subtle: 211 97% 15%;
-    --navy-subtle-foreground: 211 97% 25%;
-
-    --mustard: 44 100% 65%;
-    --mustard-foreground: 0 0% 0%;
-    --mustard-subtle: 44 100% 15%;
-    --mustard-subtle-foreground: 44 100% 65%;
-
-    /* Sidebar colors (from 2nd CSS, not existing in 1st CSS) */
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --ring: 262.1 83.3% 57.8%;
+    
+    /* Dark mode tech colors */
+    --grid-color: 217.2 32.6% 17.5%;
+    --glow-subtle: 262.1 83.3% 57.8% / 0.15;
+    --surface-elevated: 217.2 32.6% 17.5%;
   }
 
   * {
@@ -151,69 +97,207 @@
   }
 
   html,
-  body,
-  main {
-    @apply overflow-x-hidden;
-    @apply min-h-screen;
-    @apply bg-background;
-    @apply font-sans;
-    @apply text-foreground;
-    @apply antialiased;
+  body {
+    @apply min-h-screen bg-background font-sans text-foreground antialiased;
+    /* Subtle gradient background */
+    background-image: 
+      radial-gradient(circle at 25% 25%, hsl(var(--ai-primary) / 0.03) 0%, transparent 50%),
+      radial-gradient(circle at 75% 75%, hsl(var(--ai-secondary) / 0.02) 0%, transparent 50%);
   }
 
-  /* From 2nd CSS (not existing in 1st CSS): */
-  body {
-    font-family: Arial, Helvetica, sans-serif;
+  main {
+    @apply overflow-x-hidden;
+  }
+
+  /* Professional scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: hsl(var(--muted));
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--primary));
+    border-radius: 3px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--primary) / 0.8);
   }
 }
 
 @layer utilities {
-  .sheet-content {
-    /* min-width: 50%; */
-  }
-
-  @media (max-width: 756px) {
-    .sheet-content {
-      /* min-width: 100%; */
+  /* Sophisticated animations */
+  @keyframes gentle-float {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-10px);
     }
   }
 
-  @keyframes ring {
-    0% {
-      transform: scale(0);
-      opacity: 1;
+  @keyframes subtle-glow {
+    0%, 100% {
+      box-shadow: 0 0 20px hsl(var(--primary) / 0.1);
     }
-
-    100% {
-      transform: scale(6);
-      opacity: 0;
+    50% {
+      box-shadow: 0 0 30px hsl(var(--primary) / 0.2);
     }
   }
 
-  .animate-ring {
-    animation: ring 1.2s cubic-bezier(0.4, 0, 0.6, 1) forwards;
+  @keyframes gradient-shift {
+    0%, 100% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
   }
 
-  @keyframes jelly-pulse {
-
-    0%,
-    100% {
-      transform: translate(-50%, -50%) scale(0.8);
+  @keyframes tech-pulse {
+    0%, 100% {
       opacity: 0.4;
     }
-
     50% {
-      transform: translate(-50%, -50%) scale(1.2);
       opacity: 0.8;
     }
   }
 
-  .animate-jelly-pulse {
-    animation: jelly-pulse 3.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  @keyframes slide-up-fade {
+    0% {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 
-  /* From 2nd CSS (not existing in 1st CSS): */
+  @keyframes grid-flow {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(100%);
+    }
+  }
+
+  .animate-gentle-float {
+    animation: gentle-float 6s ease-in-out infinite;
+  }
+
+  .animate-subtle-glow {
+    animation: subtle-glow 4s ease-in-out infinite;
+  }
+
+  .animate-gradient-shift {
+    animation: gradient-shift 8s ease-in-out infinite;
+    background-size: 200% 200%;
+  }
+
+  .animate-tech-pulse {
+    animation: tech-pulse 3s ease-in-out infinite;
+  }
+
+  .animate-slide-up-fade {
+    animation: slide-up-fade 0.6s ease-out forwards;
+  }
+
+  .animate-grid-flow {
+    animation: grid-flow 20s linear infinite;
+  }
+
+  /* Professional utility classes */
+  .ai-gradient {
+    background: linear-gradient(
+      135deg,
+      hsl(var(--ai-primary)) 0%,
+      hsl(var(--ai-secondary)) 100%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .pioneer-card {
+    background: hsl(var(--surface-elevated));
+    border: 1px solid hsl(var(--border));
+    box-shadow: 
+      0 1px 3px 0 rgb(0 0 0 / 0.1),
+      0 1px 2px -1px rgb(0 0 0 / 0.1);
+    transition: all 0.3s ease;
+  }
+
+  .pioneer-card:hover {
+    box-shadow: 
+      0 10px 15px -3px rgb(0 0 0 / 0.1),
+      0 4px 6px -4px rgb(0 0 0 / 0.1);
+    transform: translateY(-2px);
+  }
+
+  .tech-grid {
+    background-image: 
+      linear-gradient(hsl(var(--grid-color)) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(var(--grid-color)) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+
+  .innovation-highlight {
+    background: linear-gradient(
+      90deg,
+      hsl(var(--ai-primary) / 0.05) 0%,
+      hsl(var(--ai-secondary) / 0.05) 100%
+    );
+    border-left: 3px solid hsl(var(--ai-primary));
+    padding-left: 1rem;
+  }
+
+  .glass-effect {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  .dark .glass-effect {
+    background: rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .professional-shadow {
+    box-shadow: 
+      0 4px 6px -1px rgb(0 0 0 / 0.1),
+      0 2px 4px -2px rgb(0 0 0 / 0.1);
+  }
+
+  .elevated-shadow {
+    box-shadow: 
+      0 20px 25px -5px rgb(0 0 0 / 0.1),
+      0 8px 10px -6px rgb(0 0 0 / 0.1);
+  }
+
+  /* Text utilities */
   .text-balance {
     text-wrap: balance;
+  }
+
+  /* Industry-specific gradients */
+  .healthcare-gradient {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  }
+
+  .finance-gradient {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  }
+
+  .retail-gradient {
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+  }
+
+  .manufacturing-gradient {
+    background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
   }
 }

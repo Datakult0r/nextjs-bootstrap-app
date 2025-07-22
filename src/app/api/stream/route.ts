@@ -2,15 +2,6 @@ import { NextRequest } from 'next/server';
 
 export const dynamic = 'force-dynamic';
 
-interface Article {
-  title: string;
-  description: string;
-  url: string;
-  source: {
-    name: string;
-  };
-}
-
 async function* streamGNewsData() {
   const encoder = new TextEncoder();
   const apiKey = process.env.GNEWS_API_KEY || '2ba7fe16d6e4388dcb48832ee321dcfd';
@@ -47,7 +38,7 @@ async function* streamGNewsData() {
   }
 }
 
-export async function GET(req: NextRequest) {
+export async function GET(_req: NextRequest) {
   const stream = new ReadableStream({
     async start(controller) {
       const iterator = streamGNewsData();

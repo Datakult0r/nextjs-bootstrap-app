@@ -1,9 +1,6 @@
-
-
-
 "use client";
 
-import { motion } from "framer-motion";
+import React from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
@@ -17,34 +14,40 @@ import {
   TypewriterText
 } from "@/components/animations/floating-elements";
 import { 
-  Brain, 
-  Bot, 
-  Database, 
-  Cpu, 
-  Zap, 
+  Clock, 
+  Star, 
   Target,
-  Clock,
+  Brain,
   Users,
-  Star,
-  Rocket,
-  Award
-} from "lucide-react";
+  Award,
+  Rocket
+} from 'lucide-react';
 import Link from "next/link";
 
 interface LearningPath {
   id: string;
   title: string;
   description: string;
-  difficulty: "Beginner" | "Intermediate" | "Advanced";
+  level: string;
   duration: string;
   modules: number;
-  enrolled: string;
+  progress: number;
   rating: number;
-  progress?: number;
+  enrolled: number;
+  category: string;
   skills: string[];
-  icon: any;
-  color: string;
-  bgColor: string;
+  prerequisites: string[];
+  outcomes: string[];
+  instructor: {
+    name: string;
+    avatar: string;
+    title: string;
+  };
+  thumbnail: string;
+  price: number;
+  originalPrice?: number;
+  isPopular?: boolean;
+  isNew?: boolean;
 }
 
 const learningPaths: LearningPath[] = [
@@ -52,64 +55,105 @@ const learningPaths: LearningPath[] = [
     id: "ai-fundamentals",
     title: "AI Fundamentals",
     description: "Master the basics of artificial intelligence and machine learning concepts",
-    difficulty: "Beginner",
+    level: "Beginner",
     duration: "4 weeks",
     modules: 8,
-    enrolled: "2.5K+",
-    rating: 4.8,
     progress: 65,
+    rating: 4.8,
+    enrolled: 2500,
+    category: "AI",
     skills: ["Machine Learning", "Data Analysis", "Python", "AI Ethics"],
-    icon: Brain,
-    color: "text-blue-500",
-    bgColor: "bg-blue-500/10"
+    prerequisites: [],
+    outcomes: ["Understanding AI", "Data Analysis", "Python Programming", "AI Ethics"],
+    instructor: {
+      name: "John Doe",
+      avatar: "/john-doe.jpg",
+      title: "AI Researcher"
+    },
+    thumbnail: "/ai-fundamentals.jpg",
+    price: 100,
+    originalPrice: 120,
+    isPopular: true,
+    isNew: true
   },
   {
     id: "chatbot-development",
     title: "AI Chatbot Development",
     description: "Build intelligent conversational AI systems and virtual assistants",
-    difficulty: "Intermediate",
+    level: "Intermediate",
     duration: "6 weeks",
     modules: 12,
-    enrolled: "1.8K+",
-    rating: 4.9,
     progress: 40,
+    rating: 4.9,
+    enrolled: 1800,
+    category: "AI",
     skills: ["NLP", "Conversational AI", "API Integration", "Bot Framework"],
-    icon: Bot,
-    color: "text-teal-500",
-    bgColor: "bg-teal-500/10"
+    prerequisites: ["AI Fundamentals"],
+    outcomes: ["Building AI Chatbots", "Advanced NLP", "API Integration", "Bot Framework"],
+    instructor: {
+      name: "Jane Smith",
+      avatar: "/jane-smith.jpg",
+      title: "AI Engineer"
+    },
+    thumbnail: "/chatbot-development.jpg",
+    price: 150,
+    originalPrice: 180,
+    isPopular: true,
+    isNew: true
   },
   {
     id: "data-science",
     title: "AI Data Science",
     description: "Learn to extract insights from data using advanced AI techniques",
-    difficulty: "Advanced",
+    level: "Advanced",
     duration: "8 weeks",
     modules: 16,
-    enrolled: "1.2K+",
-    rating: 4.7,
     progress: 25,
+    rating: 4.7,
+    enrolled: 1200,
+    category: "AI",
     skills: ["Deep Learning", "Neural Networks", "TensorFlow", "Data Visualization"],
-    icon: Database,
-    color: "text-purple-500",
-    bgColor: "bg-purple-500/10"
+    prerequisites: ["AI Fundamentals"],
+    outcomes: ["Deep Learning", "Neural Networks", "TensorFlow", "Data Visualization"],
+    instructor: {
+      name: "Alice Johnson",
+      avatar: "/alice-johnson.jpg",
+      title: "Data Scientist"
+    },
+    thumbnail: "/data-science.jpg",
+    price: 200,
+    originalPrice: 250,
+    isPopular: true,
+    isNew: true
   },
   {
     id: "automation-specialist",
     title: "AI Automation Specialist",
     description: "Automate business processes using intelligent AI workflows",
-    difficulty: "Intermediate",
+    level: "Intermediate",
     duration: "5 weeks",
     modules: 10,
-    enrolled: "950+",
+    progress: 0,
     rating: 4.6,
+    enrolled: 950,
+    category: "AI",
     skills: ["Process Automation", "RPA", "Workflow Design", "Integration"],
-    icon: Zap,
-    color: "text-yellow-500",
-    bgColor: "bg-yellow-500/10"
+    prerequisites: ["AI Fundamentals"],
+    outcomes: ["Process Automation", "RPA", "Workflow Design", "Integration"],
+    instructor: {
+      name: "Bob Brown",
+      avatar: "/bob-brown.jpg",
+      title: "AI Automation Engineer"
+    },
+    thumbnail: "/automation-specialist.jpg",
+    price: 120,
+    originalPrice: 150,
+    isPopular: true,
+    isNew: true
   }
 ];
 
-const difficultyColors = {
+const difficultyColors: Record<string, string> = {
   Beginner: "bg-green-500/20 text-green-400 border-green-500/30",
   Intermediate: "bg-yellow-500/20 text-yellow-400 border-yellow-500/30",
   Advanced: "bg-red-500/20 text-red-400 border-red-500/30",
@@ -183,9 +227,8 @@ export function AILearningPaths() {
               delay={0.1 * index}
             >
               <HolographicBorder 
-                glowColor={path.color.includes('blue') ? '#3B82F6' : 
-                          path.color.includes('teal') ? '#14B8A6' :
-                          path.color.includes('purple') ? '#8B5CF6' : '#F59E0B'} 
+                glowColor={path.level === "Beginner" ? "#3B82F6" : 
+                          path.level === "Intermediate" ? "#14B8A6" : "#8B5CF6"} 
                 animated={true}
                 className="h-full"
               >
@@ -195,12 +238,11 @@ export function AILearningPaths() {
                   <CardHeader className="relative">
                     <div className="flex items-start justify-between">
                       <div className="flex items-center space-x-3">
-                        <NeonGlow color={path.color.includes('blue') ? '#3B82F6' : 
-                                        path.color.includes('teal') ? '#14B8A6' :
-                                        path.color.includes('purple') ? '#8B5CF6' : '#F59E0B'} 
+                        <NeonGlow color={path.level === "Beginner" ? "#3B82F6" : 
+                                        path.level === "Intermediate" ? "#14B8A6" : "#8B5CF6"} 
                                  intensity={0.8}>
-                          <div className={`rounded-lg ${path.bgColor} p-2`}>
-                            <path.icon className={`h-6 w-6 ${path.color}`} />
+                          <div className={`rounded-lg ${path.level === "Beginner" ? "bg-green-500/10" : path.level === "Intermediate" ? "bg-yellow-500/10" : "bg-purple-500/10"} p-2`}>
+                            <Brain className={`h-6 w-6 ${path.level === "Beginner" ? "text-green-400" : path.level === "Intermediate" ? "text-yellow-400" : "text-purple-400"}`} />
                           </div>
                         </NeonGlow>
                         <div>
@@ -208,9 +250,9 @@ export function AILearningPaths() {
                           <div className="mt-2 flex items-center space-x-2">
                             <Badge 
                               variant="outline" 
-                              className={difficultyColors[path.difficulty]}
+                              className={difficultyColors[path.level]}
                             >
-                              {path.difficulty}
+                              {path.level}
                             </Badge>
                             <div className="flex items-center space-x-1 text-sm text-muted-foreground">
                               <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
@@ -253,7 +295,7 @@ export function AILearningPaths() {
                     </div>
 
                     {/* Progress (if enrolled) */}
-                    {path.progress && (
+                    {path.progress > 0 && (
                       <div className="space-y-2">
                         <div className="flex justify-between text-sm">
                           <span className="text-muted-foreground">Your Progress</span>
@@ -265,7 +307,7 @@ export function AILearningPaths() {
 
                     {/* Skills */}
                     <div className="space-y-2">
-                      <h4 className="text-sm font-medium">Skills You'll Learn:</h4>
+                      <h4 className="text-sm font-medium">Skills You&apos;ll Learn:</h4>
                       <div className="flex flex-wrap gap-2">
                         {path.skills.map((skill) => (
                           <Badge key={skill} variant="secondary" className="text-xs">
@@ -279,7 +321,7 @@ export function AILearningPaths() {
                     <div className="flex space-x-3 pt-4">
                       <Link href="/cerebro" className="flex-1">
                         <AnimatedArrowButton variant="default" size="sm" className="w-full">
-                          {path.progress ? 'Continue Learning' : 'Start Path'}
+                          {path.progress > 0 ? 'Continue Learning' : 'Start Path'}
                         </AnimatedArrowButton>
                       </Link>
                       <AnimatedArrowButton variant="ghost" size="sm">
@@ -299,10 +341,10 @@ export function AILearningPaths() {
             <Card className="border-2 border-dashed border-muted-foreground/20 bg-gradient-to-r from-teal-500/5 via-purple-500/5 to-blue-500/5 p-8">
               <div className="mx-auto max-w-2xl">
                 <GlitchText className="mb-4 text-2xl font-bold">
-                  Can't Find Your Path?
+                  Can&apos;t Find Your Path?
                 </GlitchText>
                 <p className="mb-6 text-muted-foreground">
-                  We offer custom AI training programs tailored to your organization's specific needs and goals.
+                  We offer custom AI training programs tailored to your organization&apos;s specific needs and goals.
                 </p>
                 <div className="flex justify-center space-x-4">
                   <Link href="/cerebro">

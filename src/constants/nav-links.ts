@@ -174,16 +174,322 @@ export type SolutionPanel = typeof solutions;
 export type LabPanel = typeof lab;
 export type LabItem = LearningPathItem | ResearchItem;
 
+// Industry-specific solutions for AI-Agency dropdown
+export const industries = [
+  {
+    name: "Agriculture & Farming",
+    list: [
+      {
+        name: "Smart Crop Management",
+        href: "/ai-agency/agriculture/crop-management",
+        icon: "leaf",
+        description: "AI-powered crop monitoring and yield optimization.",
+        badge: "Popular"
+      },
+      {
+        name: "Livestock Intelligence",
+        href: "/ai-agency/agriculture/livestock",
+        icon: "cow",
+        description: "Automated livestock health and behavior tracking.",
+        badge: "New"
+      },
+      {
+        name: "Precision Agriculture",
+        href: "/ai-agency/agriculture/precision",
+        icon: "target",
+        description: "Data-driven farming with IoT and AI integration.",
+        badge: "Enterprise"
+      }
+    ]
+  },
+  {
+    name: "Private Practices",
+    list: [
+      {
+        name: "Medical AI Assistant",
+        href: "/ai-agency/medical/assistant",
+        icon: "stethoscope",
+        description: "AI-powered diagnostic support and patient management.",
+        badge: "Healthcare"
+      },
+      {
+        name: "Legal Document AI",
+        href: "/ai-agency/legal/documents",
+        icon: "scale",
+        description: "Automated legal document analysis and generation.",
+        badge: "Professional"
+      },
+      {
+        name: "Financial Advisory AI",
+        href: "/ai-agency/finance/advisory",
+        icon: "calculator",
+        description: "Intelligent financial planning and risk assessment.",
+        badge: "Finance"
+      }
+    ]
+  },
+  {
+    name: "Solopreneurs",
+    list: [
+      {
+        name: "AI Content Creator",
+        href: "/ai-agency/solo/content",
+        icon: "pen-tool",
+        description: "Automated content generation and social media management.",
+        badge: "Creator"
+      },
+      {
+        name: "Business Intelligence",
+        href: "/ai-agency/solo/intelligence",
+        icon: "brain",
+        description: "AI-driven market analysis and business insights.",
+        badge: "Analytics"
+      },
+      {
+        name: "Customer Service Bot",
+        href: "/ai-agency/solo/customer-service",
+        icon: "message-circle",
+        description: "24/7 AI customer support and engagement.",
+        badge: "Support"
+      }
+    ]
+  },
+  {
+    name: "Hospitality",
+    list: [
+      {
+        name: "Guest Experience AI",
+        href: "/ai-agency/hospitality/guest-experience",
+        icon: "hotel",
+        description: "Personalized guest services and experience optimization.",
+        badge: "Experience"
+      },
+      {
+        name: "Revenue Management",
+        href: "/ai-agency/hospitality/revenue",
+        icon: "trending-up",
+        description: "Dynamic pricing and occupancy optimization.",
+        badge: "Revenue"
+      },
+      {
+        name: "Smart Concierge",
+        href: "/ai-agency/hospitality/concierge",
+        icon: "bell",
+        description: "AI-powered concierge and recommendation system.",
+        badge: "Service"
+      }
+    ]
+  },
+  {
+    name: "Manufacturing",
+    list: [
+      {
+        name: "Predictive Maintenance",
+        href: "/ai-agency/manufacturing/maintenance",
+        icon: "wrench",
+        description: "AI-driven equipment monitoring and maintenance scheduling.",
+        badge: "Industrial"
+      },
+      {
+        name: "Quality Control AI",
+        href: "/ai-agency/manufacturing/quality",
+        icon: "check-circle",
+        description: "Automated quality inspection and defect detection.",
+        badge: "Quality"
+      },
+      {
+        name: "Supply Chain Optimization",
+        href: "/ai-agency/manufacturing/supply-chain",
+        icon: "truck",
+        description: "Intelligent supply chain management and logistics.",
+        badge: "Logistics"
+      }
+    ]
+  },
+  {
+    name: "Retail & E-commerce",
+    list: [
+      {
+        name: "Personalization Engine",
+        href: "/ai-agency/retail/personalization",
+        icon: "user-check",
+        description: "AI-powered product recommendations and personalization.",
+        badge: "Retail"
+      },
+      {
+        name: "Inventory Intelligence",
+        href: "/ai-agency/retail/inventory",
+        icon: "package",
+        description: "Smart inventory management and demand forecasting.",
+        badge: "Inventory"
+      },
+      {
+        name: "Price Optimization",
+        href: "/ai-agency/retail/pricing",
+        icon: "dollar-sign",
+        description: "Dynamic pricing strategies and competitor analysis.",
+        badge: "Pricing"
+      }
+    ]
+  }
+];
+
+export const aiAgencyProducts = [
+  {
+    name: "Core AI Solutions",
+    list: [
+      {
+        name: "Enterprise AI Suite",
+        href: "/ai-agency/products/enterprise-suite",
+        icon: "building",
+        description: "Complete AI transformation toolkit for large organizations.",
+        badge: "Enterprise"
+      },
+      {
+        name: "AI Workflow Automation",
+        href: "/ai-agency/products/workflow-automation",
+        icon: "workflow",
+        description: "Streamline business processes with intelligent automation.",
+        badge: "Automation"
+      },
+      {
+        name: "Custom AI Development",
+        href: "/ai-agency/products/custom-development",
+        icon: "code",
+        description: "Bespoke AI solutions tailored to your specific needs.",
+        badge: "Custom"
+      }
+    ]
+  },
+  {
+    name: "AI Analytics & Intelligence",
+    list: [
+      {
+        name: "Predictive Analytics Platform",
+        href: "/ai-agency/products/predictive-analytics",
+        icon: "trending-up",
+        description: "Advanced forecasting and trend analysis capabilities.",
+        badge: "Analytics"
+      },
+      {
+        name: "Business Intelligence AI",
+        href: "/ai-agency/products/business-intelligence",
+        icon: "bar-chart",
+        description: "Transform data into actionable business insights.",
+        badge: "Intelligence"
+      },
+      {
+        name: "Real-time Decision Engine",
+        href: "/ai-agency/products/decision-engine",
+        icon: "zap",
+        description: "Instant AI-powered decision making and recommendations.",
+        badge: "Real-time"
+      }
+    ]
+  },
+  {
+    name: "AI Communication & Support",
+    list: [
+      {
+        name: "Conversational AI Platform",
+        href: "/ai-agency/products/conversational-ai",
+        icon: "message-square",
+        description: "Advanced chatbots and virtual assistants.",
+        badge: "Communication"
+      },
+      {
+        name: "Voice AI Solutions",
+        href: "/ai-agency/products/voice-ai",
+        icon: "mic",
+        description: "Speech recognition and voice-enabled applications.",
+        badge: "Voice"
+      },
+      {
+        name: "Multilingual AI Support",
+        href: "/ai-agency/products/multilingual-support",
+        icon: "globe",
+        description: "AI solutions supporting multiple languages and regions.",
+        badge: "Global"
+      }
+    ]
+  }
+];
+
+// Education paths for AI-Education dropdown
+export const educationPaths = [
+  {
+    name: "AI-Architect",
+    description: "Master the art of AI system design and strategy",
+    href: "/ai-education/architect",
+    icon: "brain",
+    color: "teal",
+    difficulty: "Strategist",
+    modules: [
+      { name: "AI System Architecture", progress: 0 },
+      { name: "Strategic AI Planning", progress: 0 },
+      { name: "AI Ethics & Governance", progress: 0 }
+    ]
+  },
+  {
+    name: "AI-Engineer", 
+    description: "Build and implement cutting-edge AI solutions",
+    href: "/ai-education/engineer",
+    icon: "code",
+    color: "blue",
+    difficulty: "Builder",
+    modules: [
+      { name: "Machine Learning Engineering", progress: 0 },
+      { name: "AI Model Development", progress: 0 },
+      { name: "Production AI Systems", progress: 0 }
+    ]
+  },
+  {
+    name: "AI-DevSecOps",
+    description: "Secure and protect AI infrastructures",
+    href: "/ai-education/devsecops", 
+    icon: "shield",
+    color: "purple",
+    difficulty: "Guardian",
+    modules: [
+      { name: "AI Security Fundamentals", progress: 0 },
+      { name: "Secure AI Deployment", progress: 0 },
+      { name: "AI Risk Management", progress: 0 }
+    ]
+  }
+];
+
+// Updated navigation structure
 export const navLinks = [
-  { name: "The Clinic", href: "/" },
-  { name: "Solutions", menu: solutions },
-  { name: "Europa.exe", menu: lab },
-  { name: "Classes", href: "/classes" },
-  { name: "Investors", href: "/coming-soon" },
-  { name: "Talent", href: "/coming-soon" },
-  { name: "Contact", href: "/contact" },
-  { name: "About", href: "/about" },
-  { name: "Video Platform", href: "/video-platform" }
+  { 
+    name: "Home", 
+    href: "/" 
+  },
+  { 
+    name: "AI-Agency", 
+    menu: {
+      industries: industries,
+      products: aiAgencyProducts
+    }
+  },
+  { 
+    name: "AI-Education", 
+    menu: educationPaths
+  },
+  { 
+    name: "AI-Products", 
+    href: "/ai-products" 
+  },
+  { 
+    name: "Latest News", 
+    href: "/latest-news" 
+  },
+  { 
+    name: "About Us", 
+    href: "/about" 
+  }
 ];
 
 export type NavLink = (typeof navLinks)[number];
+export type IndustryPanel = typeof industries;
+export type ProductPanel = typeof aiAgencyProducts;
+export type EducationPath = typeof educationPaths;

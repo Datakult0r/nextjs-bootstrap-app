@@ -4,7 +4,11 @@ import { motion } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
-import { Trophy, Target, Star, Zap, Award } from "lucide-react";
+import {
+  Trophy,
+  Target,
+  Star,
+} from "lucide-react"
 
 export function AIProgressTracker() {
   const achievements = [
@@ -61,19 +65,19 @@ export function AIProgressTracker() {
               Track Your AI Implementation Progress
             </h2>
             <p className="mx-auto max-w-2xl text-muted-foreground">
-              Monitor your organization's AI transformation journey and unlock achievements as you progress.
+              Monitor your organization&apos;s AI transformation journey and unlock achievements as you progress.
             </p>
           </motion.div>
         </div>
 
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-          {achievements.map((achievement, index) => (
+          {achievements.map((achievement, _index) => (
             <motion.div
               key={achievement.title}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
+              transition={{ duration: 0.5, delay: _index * 0.1 }}
             >
               <Card className="group relative overflow-hidden transition-all duration-300 hover:border-teal-500/50">
                 <div className="absolute inset-0 bg-gradient-to-br from-teal-500/5 via-purple-500/5 to-blue-500/5 opacity-0 transition-opacity group-hover:opacity-100" />
@@ -120,7 +124,7 @@ export function AIProgressTracker() {
         >
           <Card className="overflow-hidden border-2">
             <div className="grid gap-8 p-8 md:grid-cols-2 lg:grid-cols-4">
-              {stats.map((stat, index) => (
+              {stats.map((stat, _index) => (
                 <div key={stat.label} className="text-center">
                   <div className="text-3xl font-bold tracking-tight">
                     {stat.value}

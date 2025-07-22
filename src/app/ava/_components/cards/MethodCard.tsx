@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { cn } from "@/libs/utils";
 
 type MethodCardProps = {

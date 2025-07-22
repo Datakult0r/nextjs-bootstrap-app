@@ -2,7 +2,6 @@
 
 import * as React from "react";
 import Link from "next/link";
-import { useState, useEffect } from "react";
 
 import {
   NavigationMenu,
@@ -14,204 +13,114 @@ import {
 
 import { ThemeToggleButton } from "./theme-toggle-button";
 import { CoAILogo } from "@/components/ui/logo/CoAILogo";
-
-import { NavBar } from "@/components/common/navigation";
-import { MobileNavigation } from "@/components/common/navigation/mobile-menu";
+import Navigation from "@/components/common/navigation";
 import { useAuth } from "@/providers/auth-provider";
 import { Button } from "@/components/ui/button";
+import { useToast } from "@/hooks/use-toast";
 
-import { navLinks, type NavLink } from "@/constants/nav-links";
-import { useNotification } from "@/components/video-platform/notification";
+// Types
+interface HeaderProps {
+  className?: string;
+}
 
-export function Header() {
-  const notification = useNotification();
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isDarkMode, setIsDarkMode] = useState(false);
-  const { user, isAuthenticated, logout } = useAuth();
+interface NavigationItem {
+  name: string;
+  href: string;
+  label?: string;
+}
 
-  const toggleMobileMenu = () => {
-    setIsMobileMenuOpen(!isMobileMenuOpen);
-  };
+const navigationItems: NavigationItem[] = [
+  {
+    name: "video-platform",
+    href: "/video-platform",
+    label: "Video Platform"
+  },
+  {
+    name: "daily-news",
+    href: "/daily-news", 
+    label: "Daily News"
+  }
+];
 
-  useEffect(() => {
-    const checkDarkMode = () => {
-      setIsDarkMode(document.documentElement.classList.contains("dark"));
-    };
+export function Header({ className }: HeaderProps) {
+  const { toast } = useToast();
+  const { user: _user, isAuthenticated, logout } = useAuth();
 
-    checkDarkMode();
-
-    const themeObserver = new MutationObserver(() => {
-      checkDarkMode();
-    });
-
-    themeObserver.observe(document.documentElement, {
-      attributes: true,
-      attributeFilter: ["class"],
-    });
-
-    return () => {
-      themeObserver.disconnect();
-    };
-  }, []);
-
-  const closeMobileMenu = () => {
-    setIsMobileMenuOpen(false);
-  };
-
-  const handleLogout = async () => {
-    const { success } = await logout();
-    if (success) {
-      notification.success("Success","Logout Successfully");
-      window.location.href = '/login';
+  const handleLogout = React.useCallback(async () => {
+    try {
+      const { success, error } = await logout();
+      if (success) {
+        toast({
+          title: "Success",
+          description: "Logged out successfully",
+          variant: "success",
+        });
+        window.location.href = '/login';
+      } else {
+        toast({
+          title: "Error",
+          description: error || "Failed to logout",
+          variant: "destructive",
+        });
+      }
+    } catch (err) {
+      toast({
+        title: "Error", 
+        description: "An unexpected error occurred",
+        variant: "destructive",
+      });
     }
-  };
+  }, [logout, toast]);
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container flex h-16 items-center justify-between">
-        <Link href="/">
-          <CoAILogo variant="onBlack" size="sm" className="mr-10" />
-        </Link>
-        <div className="absolute right-16 top-2 flex lg:hidden">
-          <MobileNavigation navLinks={navLinks} />
-        </div>
-
-        <NavBar />
-
-        {/* Mobile Menu Overlay */}
-        <div
-          className={`fixed left-0 top-0 z-40 h-full w-full bg-white bg-opacity-75 transition-all duration-300 dark:bg-black dark:bg-opacity-75 lg:hidden ${isMobileMenuOpen ? "block" : "hidden"
-            }`}
-          onClick={closeMobileMenu}
-        ></div>
-
-        {/* Mobile Menu Container (Card Style) */}
-        <div
-          className={`fixed left-0 top-0 z-50 h-full w-full transform transition-transform duration-300 lg:hidden ${isMobileMenuOpen ? "translate-x-0" : "-translate-x-full"
-            } ${isMobileMenuOpen ? "bg-white dark:bg-black" : ""}`}
-        >
-          {/* Close Button */}
-          <button
-            className="absolute right-5 top-4 text-2xl font-bold text-black dark:text-white"
-            onClick={closeMobileMenu}
-            aria-label="Close menu"
-          >
-            &times; {/* Cross Symbol */}
-          </button>
-
-          <div className="mt-20 flex flex-col space-y-6 rounded-lg bg-white p-8 shadow-lg dark:bg-black">
-            <Link href="/" passHref>
-              <p
-                className="text-[16px] font-semibold text-black dark:text-white"
-                onClick={closeMobileMenu}
-              >
-                Products →
-              </p>
+    <>
+      {/* New Navigation Component handles everything */}
+      <Navigation />
+      
+      {/* Legacy header for additional items if needed - currently hidden */}
+      <div className="hidden">
+        <header className={`sticky top-0 z-40 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 ${className || ''}`}>
+          <div className="container flex h-16 items-center justify-between">
+            <Link href="/" className="flex items-center">
+              <CoAILogo variant="onBlack" size="sm" className="mr-10" />
             </Link>
-            <Link href="/" passHref>
-              <p
-                className="text-[16px] font-semibold text-black dark:text-white"
-                onClick={closeMobileMenu}
-              >
-                Solutions →
-              </p>
-            </Link>
-            <Link href="/pricing" passHref>
-              <p
-                className="text-[16px] font-semibold text-black dark:text-white"
-                onClick={closeMobileMenu}
-              >
-                Pricing
-              </p>
-            </Link>
-            <Link href="/" passHref>
-              <p
-                className="text-[16px] font-semibold text-black dark:text-white"
-                onClick={closeMobileMenu}
-              >
-                Resources →
-              </p>
-            </Link>
-            <Link href="/" passHref>
-              <p
-                className="text-[16px] font-semibold text-black dark:text-white"
-                onClick={closeMobileMenu}
-              >
-                Company →
-              </p>
-            </Link>
-            {/* Add new link here */}
-            <Link href="/daily-news" passHref>
-              <p
-                className="text-[16px] font-semibold text-black dark:text-white"
-                onClick={closeMobileMenu}
-              >
-                Daily News
-              </p>
-            </Link>
-            {isAuthenticated ? (
-              <button
-                className="text-[16px] font-semibold text-black dark:text-white"
-                onClick={() => {
-                  handleLogout();
-                  closeMobileMenu();
-                }}
-              >
-                Logout
-              </button>
-            ) : (
-              <Link href="/login" passHref>
-                <p
-                  className="text-[16px] font-semibold text-black dark:text-white"
-                  onClick={closeMobileMenu}
+            
+            {/* Desktop Navigation */}
+            <div className="flex flex-1 items-center justify-end gap-x-2">
+              <NavigationMenu className="hidden lg:flex">
+                <NavigationMenuList>
+                  {navigationItems.map((item) => (
+                    <NavigationMenuItem key={item.name}>
+                      <Link href={item.href} legacyBehavior passHref>
+                        <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                          {item.label}
+                        </NavigationMenuLink>
+                      </Link>
+                    </NavigationMenuItem>
+                  ))}
+                </NavigationMenuList>
+              </NavigationMenu>
+              
+              {isAuthenticated ? (
+                <Button 
+                  variant="ghost" 
+                  onClick={handleLogout}
+                  className="hidden lg:flex"
+                  type="button"
                 >
-                  Login
-                </p>
-              </Link>
-            )}
+                  Logout
+                </Button>
+              ) : (
+                <Button asChild variant="ghost" className="hidden lg:flex">
+                  <Link href="/login">Login</Link>
+                </Button>
+              )}
+              
+              <ThemeToggleButton />
+            </div>
           </div>
-        </div>
-
-        {/* Right Side Theme Toggle Button */}
-        <div className="flex flex-1 items-center justify-end gap-x-2">
-          <NavigationMenu className="hidden lg:flex">
-            <NavigationMenuList>
-              <NavigationMenuItem>
-                <Link href={"/video-platform"} legacyBehavior passHref>
-                  <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                    Video Platform
-                  </NavigationMenuLink>
-                </Link>
-              </NavigationMenuItem>
-              {/* Add new menu item here */}
-              <NavigationMenuItem>
-                <Link href={"/daily-news"} legacyBehavior passHref>
-                  <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                    Daily News
-                  </NavigationMenuLink>
-                </Link>
-              </NavigationMenuItem>
-              {/* End new menu item */}
-            </NavigationMenuList>
-          </NavigationMenu>
-          
-          {isAuthenticated ? (
-            <Button 
-              variant="ghost" 
-              onClick={handleLogout}
-              className="hidden lg:flex"
-            >
-              Logout
-            </Button>
-          ) : (
-            <Link href="/login" className="hidden lg:block">
-              <Button variant="outline">Login</Button>
-            </Link>
-          )}
-          
-          <ThemeToggleButton />
-        </div>
+        </header>
       </div>
-    </header>
+    </>
   );
 }

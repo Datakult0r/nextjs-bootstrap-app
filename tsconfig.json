@@ -3,7 +3,7 @@
     "lib": [
       "dom",
       "dom.iterable",
-      "esnext"
+      "es6"
     ],
     "allowJs": true,
     "skipLibCheck": true,
@@ -21,28 +21,26 @@
         "name": "next"
       }
     ],
+    "baseUrl": ".",
     "paths": {
       "@/*": [
         "./src/*"
       ]
     },
-    "typeRoots": [
-      "./node_modules/@types",
-      "./src/types"
-    ],
-    "target": "ES2017"
+    "target": "ES2017",
+    "forceConsistentCasingInFileNames": true,
+    "noUncheckedIndexedAccess": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitOverride": true
   },
   "include": [
-    "video.d.ts",
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    ".next/types/**/*.ts",
-    "tailwind.config.js",
-    "build/types/**/*.ts"
+    ".next/types/**/*.ts"
   ],
   "exclude": [
-    "node_modules",
-    "/src/components/ui"
+    "node_modules"
   ]
 }

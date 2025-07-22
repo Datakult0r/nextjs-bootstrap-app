@@ -57,7 +57,7 @@ const DottedBackground = ({ children }: DottedBackgroundProps) => {
       return;
     }
 
-    let dotElements = Array.from(container.querySelectorAll<HTMLDivElement>('.dot'));
+    const dotElements = Array.from(container.querySelectorAll<HTMLDivElement>('.dot'));
     if (dotElements.length !== dots.length) {
       initializeDots();
       return;

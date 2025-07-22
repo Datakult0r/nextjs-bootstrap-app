@@ -1,8 +1,15 @@
 import EmptyCategory from "@/components/video-platform/empty-category"
 
-export default function ExplorePage({ params }: { params: { slug: string } }) {
+export default async function ExplorePage({ 
+  params 
+}: { 
+  params: Promise<{ slug: string }> 
+}) {
+  // Await params as required by Next.js App Router
+  const { slug } = await params;
+  
   // Convert slug to a readable title (e.g., "ai-system-design" to "AI System Design")
-  const title = params.slug
+  const title = slug
     .split("-")
     .map((word) => {
       if (word.toLowerCase() === "ai" || word.toLowerCase() === "100x") return word.toUpperCase()

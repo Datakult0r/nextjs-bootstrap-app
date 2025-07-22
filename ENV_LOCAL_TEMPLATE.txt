@@ -1,0 +1,54 @@
+# ===========================================
+# ENVIRONMENT VARIABLES TEMPLATE
+# Copy this content to .env.local
+# ===========================================
+
+# v0 API Configuration (CONFIGURED ✅)
+V0_API_KEY=v1:team_93AzRBNlYRhsLzeG0f8f9E6H:VYl6jFl2PiFlbGRLu02b2Xzz
+
+# Supabase Configuration (NEEDS SETUP ⚠️)
+NEXT_PUBLIC_SUPABASE_URL=your_supabase_project_url
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
+
+# Site Configuration
+NEXT_PUBLIC_SITE_URL=http://localhost:3002
+NEXT_PUBLIC_ADMIN_NAME=your_admin_email@example.com
+
+# News API Configuration
+GNEWS_API_KEY=2ba7fe16d6e4388dcb48832ee321dcfd
+OPENAI_API_KEY=your_openai_api_key
+
+# Turnstile (Cloudflare) Configuration
+NEXT_PUBLIC_TURNSTILE_SITE_KEY=1x00000000000000000000AA
+TURNSTILE_SECRET_KEY=your_turnstile_secret_key
+
+# Plaid Configuration (Financial Features)
+PLAID_SECRET=your_plaid_secret_key
+
+# Operative Web Eval Agent
+OPERATIVE_API_KEY=your_operative_api_key
+
+# ===========================================
+# INSTRUCTIONS:
+# ===========================================
+# 1. Copy this entire content
+# 2. Create/edit .env.local file in project root
+# 3. Replace placeholder values with your actual API keys
+# 4. Save the file
+# 5. Restart your development server
+
+# ===========================================
+# PRIORITY SETUP (Most Important):
+# ===========================================
+# ✅ V0_API_KEY - Already configured
+# ⚠️  NEXT_PUBLIC_SUPABASE_URL - Get from Supabase dashboard
+# ⚠️  NEXT_PUBLIC_SUPABASE_ANON_KEY - Get from Supabase dashboard
+# ⚠️  OPENAI_API_KEY - Get from OpenAI dashboard
+# ⚠️  NEXT_PUBLIC_ADMIN_NAME - Set to your admin email
+
+# ===========================================
+# OPTIONAL SETUP (For Advanced Features):
+# ===========================================
+# - TURNSTILE_SECRET_KEY - For Cloudflare Turnstile
+# - PLAID_SECRET - For financial integrations
+# - OPERATIVE_API_KEY - For web evaluation agent 
