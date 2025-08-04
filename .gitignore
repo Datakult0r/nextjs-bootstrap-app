@@ -44,3 +44,4 @@ public/_next-video
 *.pyc
 __pycache__
 .env.local
+.env.local
