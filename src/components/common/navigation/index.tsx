@@ -8,6 +8,7 @@ import { Button } from '@/components/ui/button'
 import { navLinks } from '@/constants/nav-links'
 import { AIAgencyPanel } from './dropdown-panel/ai-agency-panel'
 import { AIEducationPanel } from './dropdown-panel/ai-education-panel'
+import { HackwirePanel } from './dropdown-panel/hackwire-panel'
 import { cn } from '@/libs/utils'
 
 export default function Navigation() {
@@ -102,6 +103,7 @@ export default function Navigation() {
                     <div className="rounded-xl border border-border/50 bg-background/95 backdrop-blur-md shadow-2xl">
                       {link.name === 'AI-Agency' && <AIAgencyPanel />}
                       {link.name === 'AI-Education' && <AIEducationPanel />}
+                      {link.name === 'Hackwire' && <HackwirePanel />}
                     </div>
                   </motion.div>
                 )}
@@ -170,9 +172,9 @@ export default function Navigation() {
                       <div className="px-3 py-2 text-base font-medium text-foreground">
                         {link.name}
                       </div>
-                      {link.name === 'AI-Education' && link.menu && (
+                      {link.name === 'AI-Education' && link.menu && Array.isArray(link.menu) && (
                         <div className="ml-4 space-y-1">
-                          {link.menu.map((path) => (
+                          {link.menu.map((path: any) => (
                             <Link
                               key={path.name}
                               href={path.href}
@@ -180,6 +182,20 @@ export default function Navigation() {
                               onClick={() => setIsOpen(false)}
                             >
                               {path.name}
+                            </Link>
+                          ))}
+                        </div>
+                      )}
+                      {link.name === 'Hackwire' && link.menu && Array.isArray(link.menu) && (
+                        <div className="ml-4 space-y-1">
+                          {link.menu.map((item: any) => (
+                            <Link
+                              key={item.name}
+                              href={item.href}
+                              className="block rounded-md px-3 py-2 text-sm text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
+                              onClick={() => setIsOpen(false)}
+                            >
+                              {item.name}
                             </Link>
                           ))}
                         </div>

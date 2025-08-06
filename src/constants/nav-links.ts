@@ -415,6 +415,49 @@ export const aiAgencyProducts = [
   }
 ];
 
+// Hackwire news system for real-time news and AI-powered content
+export const hackwireMenu = [
+  {
+    name: "Newswire",
+    description: "Real-time news feed with AI-powered insights",
+    href: "/hackwire/newswire",
+    icon: "newspaper",
+    color: "cyan",
+    badge: "Live",
+    features: [
+      { name: "Real-time News Feed", description: "Latest headlines from trusted sources" },
+      { name: "AI Content Analysis", description: "Intelligent categorization and insights" },
+      { name: "Breaking News Alerts", description: "Instant notifications for major events" }
+    ]
+  },
+  {
+    name: "Control Panel",
+    description: "Advanced news stream management and AI monologue generation",
+    href: "/hackwire/control-panel",
+    icon: "settings",
+    color: "purple",
+    badge: "Pro",
+    features: [
+      { name: "Stream Configuration", description: "Customize news feeds and overlays" },
+      { name: "AI Monologue Generator", description: "Create engaging commentary with OpenAI" },
+      { name: "Custom Headlines", description: "Manage and curate your own news content" }
+    ]
+  },
+  {
+    name: "Live",
+    description: "Live streaming overlay and broadcast tools",
+    href: "/hackwire/live",
+    icon: "radio",
+    color: "red",
+    badge: "Streaming",
+    features: [
+      { name: "OBS Integration", description: "Browser source overlay for streaming" },
+      { name: "Real-time Ticker", description: "Scrolling news ticker for broadcasts" },
+      { name: "Breaking News Overlay", description: "Dynamic alerts for live streams" }
+    ]
+  }
+];
+
 // Education paths for AI-Education dropdown
 export const educationPaths = [
   {
@@ -460,32 +503,36 @@ export const educationPaths = [
 
 // Updated navigation structure
 export const navLinks = [
-  { 
-    name: "Home", 
-    href: "/" 
+  {
+    name: "Home",
+    href: "/"
   },
-  { 
-    name: "AI-Agency", 
+  {
+    name: "AI-Agency",
     menu: {
       industries: industries,
       products: aiAgencyProducts
     }
   },
-  { 
-    name: "AI-Education", 
+  {
+    name: "AI-Education",
     menu: educationPaths
   },
-  { 
-    name: "AI-Products", 
-    href: "/ai-products" 
+  {
+    name: "AI-Products",
+    href: "/ai-products"
   },
-  { 
-    name: "Latest News", 
-    href: "/latest-news" 
+  {
+    name: "Hackwire",
+    menu: hackwireMenu
   },
-  { 
-    name: "About Us", 
-    href: "/about" 
+  {
+    name: "Latest News",
+    href: "/latest-news"
+  },
+  {
+    name: "About Us",
+    href: "/about"
   }
 ];
 
@@ -493,3 +540,4 @@ export type NavLink = (typeof navLinks)[number];
 export type IndustryPanel = typeof industries;
 export type ProductPanel = typeof aiAgencyProducts;
 export type EducationPath = typeof educationPaths;
+export type HackwireMenu = typeof hackwireMenu;
