@@ -85,7 +85,6 @@
     "tailwind-merge": "^2.5.2",
     "tailwindcss-animate": "^1.0.7",
     "three": "^0.177.0",
-    "website-v2": "file:",
     "zod": "^3.25.67"
   },
   "devDependencies": {

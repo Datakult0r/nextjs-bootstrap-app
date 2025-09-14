@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { NewsArticle, NewsFilter, NewsResponse } from '@/types/hackwire';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -15,17 +15,16 @@ export default function NewswirePage() {
   const [error, setError] = useState<string | null>(null);
   const [filter, setFilter] = useState<NewsFilter>('top');
   const [searchQuery, setSearchQuery] = useState('');
-  const [limit, setLimit] = useState(20);
   const [lastUpdated, setLastUpdated] = useState<Date | null>(null);
 
-  const fetchNews = async (currentFilter: NewsFilter = filter, query: string = searchQuery) => {
+  const fetchNews = useCallback(async (currentFilter: NewsFilter = filter, query: string = searchQuery) => {
     try {
       setLoading(true);
       setError(null);
 
       const params = new URLSearchParams({
         filter: currentFilter,
-        limit: limit.toString(),
+        limit: '20',
         ...(query && { query })
       });
 
@@ -55,7 +54,7 @@ export default function NewswirePage() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [filter, searchQuery]);
 
   const handleSearch = async () => {
     await fetchNews(filter, searchQuery);
@@ -89,7 +88,7 @@ export default function NewswirePage() {
 
   useEffect(() => {
     fetchNews();
-  }, []);
+  }, [fetchNews]);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-purple-900/20 to-gray-900">

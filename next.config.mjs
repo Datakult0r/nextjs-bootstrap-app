@@ -10,28 +10,15 @@ const nextConfig = {
 		// Enable turbo mode for faster builds
 		turbo: {
 			rules: {
-				'*.svg': {
-					loaders: ['@svgr/webpack'],
-					as: '*.js',
-				},
+				// '*.svg': {
+				// 	loaders: ['@svgr/webpack'],
+				// 	as: '*.js',
+				// },
 			},
 		},
 	},
 	// Disable static page generation for now
 	// unstable_excludeFiles: ['src/app/page.tsx'],
-	// Add this rewrites section
-	async rewrites() {
-		return [
-			{
-				source: '/overview.html',
-				destination: '/overview.html'
-			},
-			{
-				source: '/guide.html',
-				destination: '/guide.html'
-			}
-		];
-	},
 	images: {
 		remotePatterns: [
 			{

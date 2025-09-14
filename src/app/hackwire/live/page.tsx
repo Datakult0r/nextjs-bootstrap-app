@@ -1,7 +1,7 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import { StreamHeadline, StreamDataResponse, OverlaySettings } from '@/types/hackwire';
+import { useState, useEffect, useCallback } from 'react';
+import { StreamDataResponse, OverlaySettings } from '@/types/hackwire';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -10,8 +10,6 @@ import {
   Pause, 
   RefreshCw, 
   Monitor, 
-  Eye, 
-  EyeOff, 
   Copy, 
   ExternalLink,
   Loader2,
@@ -31,7 +29,7 @@ export default function LivePage() {
   const [autoRefresh, setAutoRefresh] = useState(true);
   const [lastUpdate, setLastUpdate] = useState<Date | null>(null);
 
-  const fetchStreamData = async () => {
+  const fetchStreamData = useCallback(async () => {
     try {
       setError(null);
       
@@ -59,9 +57,9 @@ export default function LivePage() {
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to fetch stream data');
     }
-  };
+  }, []);
 
-  const fetchSettings = async () => {
+  const fetchSettings = useCallback(async () => {
     try {
       const response = await fetch('/api/hackwire/settings?type=overlay');
       
@@ -84,13 +82,13 @@ export default function LivePage() {
     } catch (err) {
       console.error('Failed to fetch settings:', err);
     }
-  };
+  }, []);
 
-  const fetchData = async () => {
+  const fetchData = useCallback(async () => {
     setLoading(true);
     await Promise.all([fetchStreamData(), fetchSettings()]);
     setLoading(false);
-  };
+  }, [fetchStreamData, fetchSettings]);
 
   const toggleLive = () => {
     setIsLive(!isLive);
@@ -136,7 +134,7 @@ export default function LivePage() {
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [fetchData]);
 
   useEffect(() => {
     let interval: NodeJS.Timeout;
@@ -148,7 +146,7 @@ export default function LivePage() {
     return () => {
       if (interval) clearInterval(interval);
     };
-  }, [autoRefresh, isLive, settings?.refresh_rate]);
+  }, [autoRefresh, isLive, settings?.refresh_rate, fetchStreamData]);
 
   if (loading) {
     return (
@@ -308,7 +306,7 @@ export default function LivePage() {
               </CardHeader>
               <CardContent>
                 <div className="space-y-3 max-h-96 overflow-y-auto">
-                  {streamData?.headlines?.map((headline, index) => (
+                  {streamData?.headlines?.map((headline) => (
                     <div key={headline.id} className="p-4 bg-gray-700/50 rounded-lg border border-gray-600">
                       <div className="flex items-start justify-between gap-3 mb-2">
                         <div className="flex items-center gap-2">

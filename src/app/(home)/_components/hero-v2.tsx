@@ -1,7 +1,6 @@
 "use client";
 
 import { cn } from "@/libs/utils";
-import { BookingForm } from "@/components/common/booking-form";
 import { AnimatedGridPattern } from "@/components/ui/animated-grid-pattern";
 import { AnimatedArrowButton } from "@/components/ui/animated-arrow-button";
 import { motion } from "framer-motion";

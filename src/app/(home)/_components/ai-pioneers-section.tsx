@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { cn } from "@/libs/utils";
 import Link from "next/link";
 
 interface AiPioneersSectionProps {
