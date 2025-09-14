@@ -6,8 +6,20 @@ const GNEWS_API_KEY = process.env.GNEWS_API_KEY;
 const GNEWS_BASE_URL = 'https://gnews.io/api/v4';
 
 // Cache for news data to avoid excessive API calls
-let newsCache: { [key: string]: { data: NewsResponse; timestamp: number } } = {};
+const newsCache: { [key: string]: { data: NewsResponse; timestamp: number } } = {};
 const CACHE_DURATION = 5 * 60 * 1000; // 5 minutes
+
+interface GNewsArticle {
+  title: string;
+  description: string;
+  content: string;
+  url: string;
+  image: string;
+  publishedAt: string;
+  source: {
+    name: string;
+  };
+}
 
 export async function GET(request: NextRequest) {
   try {
@@ -76,7 +88,7 @@ export async function GET(request: NextRequest) {
     // Transform GNews response to our format
     const newsResponse: NewsResponse = {
       success: true,
-      articles: data.articles?.map((article: any) => ({
+      articles: data.articles?.map((article: GNewsArticle) => ({
         title: article.title,
         description: article.description,
         content: article.content,
@@ -156,7 +168,7 @@ export async function POST(request: NextRequest) {
 
     const newsResponse: NewsResponse = {
       success: true,
-      articles: data.articles?.map((article: any) => ({
+      articles: data.articles?.map((article: GNewsArticle) => ({
         title: article.title,
         description: article.description,
         content: article.content,

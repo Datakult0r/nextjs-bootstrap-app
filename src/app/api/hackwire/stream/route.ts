@@ -31,7 +31,7 @@ export async function GET(request: NextRequest) {
 
     let headlines: StreamHeadline[] = [];
     let apiCount = 0;
-    let customCount = customHeadlines.length;
+    const customCount = customHeadlines.length;
 
     // Handle different content modes
     switch (mode) {
